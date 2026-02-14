@@ -74,6 +74,11 @@ async def health() -> HealthResponse:
     return HealthResponse(status="ok", environment=settings.app_env)
 
 
+@app.get("/", include_in_schema=False)
+async def root():
+    return {"message": "Pladoc API is running", "docs": "/docs", "health": "/health"}
+
+
 @app.get("/api/species", response_model=list[Species])
 async def list_species(q: str = "") -> list[Species]:
     return kb.search_species(q)
