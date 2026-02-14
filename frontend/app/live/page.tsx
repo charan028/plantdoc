@@ -7,8 +7,11 @@ import { useGeminiLive } from "../../hooks/use-gemini-live";
 import Waveform from "../../components/Waveform";
 import Link from "next/link";
 
+import ShareCard from "../../components/ShareCard";
+
 export default function LivePage() {
     const [latest, setLatest] = useState<DetectionResponse | null>(null);
+    const [showShare, setShowShare] = useState(false);
 
     // Use the custom hook for logic
     const { isConnected, isTalking, connect, disconnect, sendVideoFrame, error } = useGeminiLive();
@@ -50,24 +53,44 @@ export default function LivePage() {
 
                     {/* Floating Detection Pill (Overlay on Video) */}
                     {latest && latest.best_match.species_id !== "not-a-plant" && (
-                        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-                            <div className="bg-black/60 backdrop-blur-md rounded-full px-5 py-3 flex items-center gap-4 border border-white/10 shadow-xl animate-in fade-in slide-in-from-top-4 duration-500">
-                                <div className="flex flex-col items-center">
-                                    <span className="text-white font-bold text-sm tracking-wide">
-                                        {latest.best_match.species_id}
-                                    </span>
-                                    {latest.care_tip && (
-                                        <span className="text-white/80 text-[10px] max-w-[200px] truncate">
-                                            {latest.care_tip}
+                        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 pointer-events-auto">
+                            <div className="flex items-center gap-2">
+                                <div className="bg-black/60 backdrop-blur-md rounded-full px-5 py-3 flex items-center gap-4 border border-white/10 shadow-xl animate-in fade-in slide-in-from-top-4 duration-500">
+                                    <div className="flex flex-col items-center">
+                                        <span className="text-white font-bold text-sm tracking-wide">
+                                            {latest.best_match.species_id}
                                         </span>
-                                    )}
+                                        {latest.care_tip && (
+                                            <span className="text-white/80 text-[10px] max-w-[200px] truncate">
+                                                {latest.care_tip}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <div className="h-8 w-px bg-white/20" />
+                                    <span className="text-[#A3E635] text-xs font-bold">
+                                        {Math.round(latest.best_match.confidence * 100)}%
+                                    </span>
                                 </div>
-                                <div className="h-8 w-px bg-white/20" />
-                                <span className="text-[#A3E635] text-xs font-bold">
-                                    {Math.round(latest.best_match.confidence * 100)}%
-                                </span>
+                                <button
+                                    onClick={() => setShowShare(true)}
+                                    className="h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center text-xl shadow-lg border border-white/10 transition-all active:scale-95"
+                                >
+                                    📤
+                                </button>
                             </div>
                         </div>
+                    )}
+
+                    {/* Share Card Modal */}
+                    {showShare && latest && (
+                        <ShareCard
+                            plantName={latest.best_match.species_id}
+                            confidence={latest.best_match.confidence}
+                            careTip={latest.care_tip}
+                            // In a real app, we'd capture the current frame. For now, we'll let the card use a placeholder or previous image if available.
+                            // Ideally, we'd pass the frame dataUrl here if LiveCamera exposed it.
+                            onClose={() => setShowShare(false)}
+                        />
                     )}
 
                     {/* Error Toast */}
