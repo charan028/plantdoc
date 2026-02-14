@@ -26,7 +26,7 @@ export type ChatResponse = {
   timestamp: string;
 };
 
-const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000").replace(/\/$/, "");
+const API_BASE = (process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000").trim().replace(/\/+$/, "");
 
 export async function fetchSpecies(query: string): Promise<Species[]> {
   const res = await fetch(`${API_BASE}/api/species?q=${encodeURIComponent(query)}`);
