@@ -25,7 +25,11 @@ export function useGeminiLive(): GeminiLiveState {
         if (websocketRef.current) return;
 
         try {
-            const wsUrl = "ws://localhost:8000/ws/live";
+            const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+            const wsProtocol = baseUrl.startsWith("https") ? "wss" : "ws";
+            const wsBase = baseUrl.replace(/^http(s)?:\/\//, ""); // Remove protocol
+            const wsUrl = `${wsProtocol}://${wsBase}/ws/live`;
+
             const ws = new WebSocket(wsUrl);
             websocketRef.current = ws;
 
