@@ -1,0 +1,47 @@
+[
+  {
+    "id": "monstera-deliciosa",
+    "scientific_name": "Monstera deliciosa",
+    "common_name": "Swiss Cheese Plant",
+    "care_difficulty": "easy",
+    "watering_frequency_days": 7,
+    "light": "bright-indirect",
+    "pet_toxicity": "toxic"
+  },
+  {
+    "id": "epipremnum-aureum",
+    "scientific_name": "Epipremnum aureum",
+    "common_name": "Pothos",
+    "care_difficulty": "easy",
+    "watering_frequency_days": 8,
+    "light": "low-to-bright-indirect",
+    "pet_toxicity": "toxic"
+  },
+  {
+    "id": "ficus-lyrata",
+    "scientific_name": "Ficus lyrata",
+    "common_name": "Fiddle Leaf Fig",
+    "care_difficulty": "medium",
+    "watering_frequency_days": 9,
+    "light": "bright-indirect",
+    "pet_toxicity": "mildly-toxic"
+  },
+  {
+    "id": "sansevieria-trifasciata",
+    "scientific_name": "Dracaena trifasciata",
+    "common_name": "Snake Plant",
+    "care_difficulty": "easy",
+    "watering_frequency_days": 14,
+    "light": "low-to-bright",
+    "pet_toxicity": "toxic"
+  },
+  {
+    "id": "spathyphyllum-wallisii",
+    "scientific_name": "Spathiphyllum wallisii",
+    "common_name": "Peace Lily",
+    "care_difficulty": "medium",
+    "watering_frequency_days": 6,
+    "light": "medium-indirect",
+    "pet_toxicity": "toxic"
+  }
+]
