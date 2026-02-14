@@ -1,5 +1,7 @@
 # 🌿 Pladoc: The AI Plant Doctor
 
+![Pladoc Dashboard](assets/dashboard.png)
+
 **Pladoc** (formerly Plant Pilot) is a professional grade, multimodal AI application designed for real-time plant diagnosis and botanical consultation. It combines low-latency voice/video interaction with a persistent expert chat interface.
 
 ---
@@ -7,7 +9,13 @@
 ###  Key Features
 
 - **Pladoc Live**: A real-time mode using the **Gemini 2.0 Flash Multimodal Live API**. Point your camera and ask questions via voice—the AI "sees" your plant and talks back instantly.
+  
+  ![Live Mode](assets/live_mode.png)
+
 - **Pladoc Chat**: A dedicated expert consultation page where you can upload photos, maintain long-term chat history, and receive persistent care advice.
+
+  ![Expert Chat](assets/chat.jpg)
+
 - **Conversation Memory**: The AI remembers previous interactions, allowing for seamless follow-up questions like *"Can you suggest similar plants?"*
 - **Visual Logic**: Integrated "Plant Pathologist" system prompt for expert-level diagnostic accuracy.
 
